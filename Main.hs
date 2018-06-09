@@ -6,6 +6,7 @@ import Data.Binary
 import Data.List
 import Data.Ord
 import Control.Exception
+import System.Directory
 
 -- main = do
 --     putStrLn "Enter two lines"
@@ -54,9 +55,12 @@ main = do
     --clear screen --commented for testing
     -- putStr "\ESC[2J"
     --
+    -- listDirectory "/home/filip/Desktop/hprojekt"
     putStrLn "n - start new game"
     putStrLn "s - save current game"
     putStrLn "l - load saved game"
+    putStrLn "f - list of existing saves"
+    putStrLn "b - create folser for saves" --poxniej trzeba by to gdzies wrzucic w setupie
     putStrLn "------------------------------------------------------"
     putStr "Your decision: "
     input <- getChar
@@ -65,14 +69,22 @@ main = do
         'n' -> do putStrLn "new game"
         's' -> do putStrLn "save"
         'l' -> do putStrLn "load"
+        'f' -> do listOfFiles
+        'b' -> do createSaveDir
+
 
         _ -> main
         -- otherwise -> do  putStrLn "cos innego"
-    putStrLn "input"
+    putStrLn "exit"
 
     -- putStrLn input
 
 
+listOfFiles = do
+    rrr <- listDirectory "./savefiles"
+    putStrLn(show rrr)
+
+createSaveDir = createDirectory "./savefiles"
 
 
 --tutaj są dobre funckje
