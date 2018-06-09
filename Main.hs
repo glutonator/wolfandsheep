@@ -67,8 +67,10 @@ main = do
     putStrLn "\n"
     case input of 
         'n' -> do putStrLn "new game"
-        's' -> do putStrLn "save"
-        'l' -> do putStrLn "load"
+        -- 's' -> do putStrLn "save"
+        's' -> do save pp
+        -- 'l' -> do putStrLn "load"
+        'l' -> do load
         'f' -> do listOfFiles
         'b' -> do createSaveDir
 
@@ -93,7 +95,7 @@ save points = do
     putStr "Write here: "
     hFlush stdout
     filename <- getLine
-    writeFile ("savefiles/"++filename++".txt") (show points)
+    writeFile ("savefiles/"++filename) (show points)
     putStrLn ("Saved")
 
 load = do
@@ -101,7 +103,7 @@ load = do
     putStr "Write here: "
     hFlush stdout
     filename <- getLine
-    dataInFile <- readFile ("savefiles/"++filename++".txt")
+    dataInFile <- readFile ("savefiles/"++filename)
     let points :: [Point]
         points = read dataInFile
     putStrLn (show points)
