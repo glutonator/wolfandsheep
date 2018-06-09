@@ -39,17 +39,38 @@ saveState filename points = writeFile filename (show points)
 
 -- func p = putStrLn (show p)
 
-main = do
-    qqq <- readFile "test.txt"
-    let temp :: [Point]
-        temp = read qqq
-    let yyy = xPoint (head temp)
-    let ggg = map xPoint temp
-    let mmm = xPoint p2
-    putStrLn (show ggg)
-    putStrLn (show temp)
+-- main = do
+--     qqq <- readFile "test.txt"
+--     let temp :: [Point]
+--         temp = read qqq
+--     let yyy = xPoint (head temp)
+--     let ggg = map xPoint temp
+--     let mmm = xPoint p2
+--     putStrLn (show ggg)
+--     putStrLn (show temp)
 
 
+main = do 
+    --clear screen --commented for testing
+    -- putStr "\ESC[2J"
+    --
+    putStrLn "n - start new game"
+    putStrLn "s - save current game"
+    putStrLn "l - load saved game"
+    putStrLn "------------------------------------------------------"
+    putStr "Your decision: "
+    input <- getChar
+    putStrLn "\n"
+    case input of 
+        'n' -> do putStrLn "new game"
+        's' -> do putStrLn "save"
+        'l' -> do putStrLn "load"
+
+        _ -> main
+        -- otherwise -> do  putStrLn "cos innego"
+    putStrLn "input"
+
+    -- putStrLn input
 
 
 
