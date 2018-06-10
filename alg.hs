@@ -70,20 +70,22 @@ distanceWolfToSheep :: [Point] -> Int
 distanceWolfToSheep ws = func ws
     where func (w:s:ss)  = max (abs(yPoint s - yPoint w)) (abs(xPoint s - xPoint w)) + func (w:ss)
           func [w]  = 0
-			
+	
+--debugowa werjsa funckji		
 countSheepPassedDebug :: Num t => [Point] -> t						
 countSheepPassedDebug ws = func ws
     where func (w:s:ss) | trace ("branch 4") (yPoint w >= yPoint s ) = 1 + (func (w:ss))
                         | trace ("branch 3") otherwise = func (w:ss)
           func [w]  = trace ("branch 1") 0
 
+--liczenie owiec które są już minięte przez wilka
 countSheepPassed :: Num t => [Point] -> t						
 countSheepPassed ws = func ws
     where func (w:s:ss) | (yPoint w >= yPoint s) = 1 + (func (w:ss))
                         | otherwise = func (w:ss)
           func [w]  = 0
 
-
+--testowanie czy jest minął lubjest w tej samej lini 3 owcami
 isMoreSheepPassed :: [Point] -> Bool
 isMoreSheepPassed ws | countSheepPassed ws >= 3 = True
                      | otherwise = False
