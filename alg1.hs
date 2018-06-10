@@ -156,8 +156,20 @@ countWolfMoves state = length (possibleWolfMoves state)
 valueOfNode ws = 200 * (distanceWolfToEnd ws) - 200 * (distanceWolfToSheep ws) + 300 * (fromEnum(isMoreSheepPassed ws)) + 100 * (countWolfMoves ws) + 1000 * (fromEnum(wolfWins ws)) - 1000 * (fromEnum(sheepsWin ws))
 valueOfNode1111 ws = 1 * (distanceWolfToEnd ws) + 1 * (distanceWolfToSheep ws) + 1 * (fromEnum(isMoreSheepPassed ws)) + 1 * (countWolfMoves ws) + 1 * (fromEnum(wolfWins ws)) - 1 * (fromEnum(sheepsWin ws))
 
-	
-qqqqq ws = fromEnum True							
+
+--funckja do ruszania owca/wilkiem
+movepPointToNPosition :: (Eq t1, Num t1) => t1 -> t -> [t] -> [t]
+movepPointToNPosition n nPoint (x:xs) | n == 0 = nPoint:xs
+                                      | otherwise = x:movepPointToNPosition (n-1) nPoint xs
+
+--funckja do bezpiecznego ruszania owcą/wilkiem
+-- n - numer pozycji od 0 do 4, nPoint - nowy punkt z nowymi współrzędnymi, state- plansza przed ruchem, return - nowa tablica gry z wykonanym ruchem
+movepPointToNPositionSafe :: (Num t, Eq t) => t -> Point -> State -> [Point]
+movepPointToNPositionSafe n nPoint state | isMovePossible state nPoint ==True = movepPointToNPosition n nPoint state
+                                         | otherwise = state
+
+
+							
 								
 -- moje testy							
 p1 = Point 1 7
