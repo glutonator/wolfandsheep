@@ -149,11 +149,15 @@ isMoreSheepPassed ws | countSheepPassed ws >= 3 = True
 
 countWolfMoves :: State -> Int
 countWolfMoves state = length (possibleWolfMoves state)
-															
-														
-								
-								
-								
+
+	
+
+
+valueOfNode ws = 200 * (distanceWolfToEnd ws) - 200 * (distanceWolfToSheep ws) + 300 * (fromEnum(isMoreSheepPassed ws)) + 100 * (countWolfMoves ws) + 1000 * (fromEnum(wolfWins ws)) - 1000 * (fromEnum(sheepsWin ws))
+valueOfNode1111 ws = 1 * (distanceWolfToEnd ws) + 1 * (distanceWolfToSheep ws) + 1 * (fromEnum(isMoreSheepPassed ws)) + 1 * (countWolfMoves ws) + 1 * (fromEnum(wolfWins ws)) - 1 * (fromEnum(sheepsWin ws))
+
+	
+qqqqq ws = fromEnum True							
 								
 -- moje testy							
 p1 = Point 1 7
